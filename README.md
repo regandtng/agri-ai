@@ -1,10 +1,6 @@
-# ============================================================
+
 #  Agri-AI ĐBSCL — Hệ thống phân loại trái cây xuất khẩu
-#  README & Hướng dẫn chạy đầy đủ
-# ============================================================
-
 ## CẤU TRÚC PROJECT
-
 agri-ai/
 ├── dataset/
 │   ├── data.yaml           # Cấu hình YOLO
