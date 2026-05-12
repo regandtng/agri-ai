@@ -1,0 +1,19 @@
+﻿path: D:\Microsoft ViSual Code( VS Code)\agri-ai\dataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 12
+names:
+  0: xoai
+  1: thanh_long
+  2: buoi
+  3: cam
+  4: quit
+  5: dua_hau
+  6: chuoi
+  7: oi
+  8: mit
+  9: sau_rieng
+  10: chom_chom
+  11: mang_cut

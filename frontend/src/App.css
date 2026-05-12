@@ -1,0 +1,167 @@
+/* ── Reset & Variables ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:   #16a34a;
+  --blue:    #2563eb;
+  --amber:   #d97706;
+  --red:     #dc2626;
+  --teal:    #0891b2;
+  --bg:      #f8fafc;
+  --surface: #ffffff;
+  --border:  #e2e8f0;
+  --text:    #1e293b;
+  --muted:   #64748b;
+  --radius:  10px;
+  --shadow:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+}
+
+body { font-family: "Inter", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ── Shell ─────────────────────────────────────────── */
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: var(--shadow);
+}
+.header-brand { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+.header-icon  { font-size: 28px; }
+.header-brand h1 { font-size: 18px; font-weight: 700; color: var(--green); }
+.header-brand p  { font-size: 12px; color: var(--muted); }
+
+.header-nav { display: flex; gap: 4px; padding: 8px 0; }
+.nav-btn {
+  padding: 7px 16px; border-radius: 8px; border: 1px solid transparent;
+  background: transparent; cursor: pointer; font-size: 14px; color: var(--muted);
+  display: flex; align-items: center; gap: 6px; transition: all .15s;
+}
+.nav-btn:hover  { background: var(--bg); color: var(--text); }
+.nav-btn.active { background: #f0fdf4; color: var(--green); border-color: #bbf7d0; font-weight: 600; }
+
+.app-main { flex: 1; padding: 24px; max-width: 1100px; margin: 0 auto; width: 100%; }
+
+/* ── Upload page ───────────────────────────────────── */
+.upload-page { display: flex; flex-direction: column; gap: 24px; }
+
+.drop-zone {
+  border: 2px dashed var(--border); border-radius: 16px;
+  background: var(--surface); cursor: pointer;
+  transition: all .2s; min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+}
+.drop-zone:hover, .drop-zone.dragging { border-color: var(--green); background: #f0fdf4; }
+.drop-zone.has-preview { border-style: solid; cursor: default; }
+
+.drop-hint { text-align: center; padding: 40px; }
+.drop-icon  { font-size: 48px; margin-bottom: 12px; }
+.drop-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+.drop-sub   { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+.preview-wrap { width: 100%; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.preview-img  { max-height: 380px; max-width: 100%; border-radius: 12px; object-fit: contain; box-shadow: var(--shadow); }
+.preview-actions { display: flex; gap: 12px; }
+
+/* ── Buttons ───────────────────────────────────────── */
+.btn-primary {
+  padding: 10px 24px; border-radius: 8px; border: none;
+  background: var(--green); color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: opacity .15s;
+}
+.btn-primary:hover    { opacity: .88; }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-ghost {
+  padding: 10px 20px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--muted); font-size: 14px; cursor: pointer; transition: all .15s;
+}
+.btn-ghost:hover { background: var(--bg); color: var(--text); }
+
+/* ── Error ─────────────────────────────────────────── */
+.error-box {
+  background: #fef2f2; border: 1px solid #fecaca; border-radius: var(--radius);
+  padding: 14px 16px; color: var(--red); font-size: 14px;
+  display: flex; align-items: center;
+}
+
+/* ── Result ─────────────────────────────────────────── */
+.result-wrap { display: flex; flex-direction: column; gap: 20px; }
+.result-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.result-header h2 { font-size: 20px; font-weight: 700; }
+.result-meta { display: flex; align-items: center; gap: 16px; font-size: 14px; color: var(--muted); }
+
+.result-images { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.img-label { font-size: 13px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+.result-img { width: 100%; border-radius: 10px; object-fit: contain; max-height: 300px; background: var(--bg); border: 1px solid var(--border); }
+
+.grade-summary { display: flex; gap: 12px; flex-wrap: wrap; }
+.grade-pill {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 12px 20px; border-radius: 10px; border: 2px solid;
+  background: var(--surface); min-width: 90px;
+}
+.grade-count { font-size: 26px; font-weight: 800; }
+.grade-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+
+/* ── Result Card ───────────────────────────────────── */
+.result-card {
+  border: 1px solid var(--border); border-top-width: 4px;
+  border-radius: var(--radius); background: var(--surface);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.card-top { padding: 12px 14px; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.card-fruit { font-size: 16px; font-weight: 700; }
+.card-conf  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.card-grade { padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
+.card-body  { padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+.card-row   { display: flex; justify-content: space-between; font-size: 13px; }
+.card-row-label { color: var(--muted); }
+.card-row-value { font-weight: 500; }
+
+/* ── History ───────────────────────────────────────── */
+.history-page { display: flex; flex-direction: column; gap: 16px; }
+.history-page h2 { font-size: 20px; font-weight: 700; }
+.history-table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.history-table th { background: var(--bg); padding: 12px 14px; text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border); }
+.history-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); }
+.history-table tr:last-child td { border-bottom: none; }
+.history-table tr:hover td { background: var(--bg); }
+
+.pagination { display: flex; align-items: center; gap: 16px; justify-content: center; }
+.pagination button { padding: 7px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 14px; }
+.pagination button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ── Stats ─────────────────────────────────────────── */
+.stats-page { display: flex; flex-direction: column; gap: 24px; }
+
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+.metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+.metric-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.metric-value { font-size: 28px; font-weight: 800; }
+
+.stats-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+.stats-section h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+
+.stat-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.stat-bar-label { width: 110px; font-size: 13px; text-align: right; color: var(--muted); flex-shrink: 0; }
+.stat-bar-track { flex: 1; height: 10px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+.stat-bar-fill  { height: 100%; border-radius: 99px; transition: width .4s ease; }
+.stat-bar-val   { width: 80px; font-size: 13px; font-weight: 600; }
+
+.center-msg { text-align: center; color: var(--muted); padding: 60px 20px; font-size: 16px; }
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  .app-header { padding: 0 12px; }
+  .app-main   { padding: 14px; }
+  .result-images { grid-template-columns: 1fr; }
+  .nav-btn span:first-child { display: none; }
+}
